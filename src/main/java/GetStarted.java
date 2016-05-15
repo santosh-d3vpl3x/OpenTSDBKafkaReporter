@@ -36,11 +36,11 @@ public class GetStarted {
 
     static void startReport() {
         Properties props = new Properties();
-        props.put("metadata.broker.list", "10.96.23.78:9092");
+        props.put("metadata.broker.list", "kafka-broker:9092");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
         props.put("producer.type", "sync");
         Producer<String, String> kafkaProducer = new Producer<String, String>(new ProducerConfig(props));
-        OpenTSDBKafkaReporter.Builder reporterBuilder = OpenTSDBKafkaReporter.builder(couchbase, "storm_trooper", kafkaProducer);
+        OpenTSDBKafkaReporter.Builder reporterBuilder = OpenTSDBKafkaReporter.builder(couchbase, "test_topic", kafkaProducer);
         Map<String, String> tags = new HashMap<String, String>();
         tags.put("cluster", "cb1");
         tags.put("bucket", "test");
